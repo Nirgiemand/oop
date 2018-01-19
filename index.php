@@ -10,6 +10,11 @@ require_once 'conf.php';
 
 // loome test objekti template klassist
 $testTabel = new template('views/test.html');
+
+//määrame reaaalväärtused
+$testTabel->set('esimene','1');
+$testTabel->set('teine','2');
+
 // lisame objekti testvaade
 echo '<pre>';
 print_r($testTabel);
