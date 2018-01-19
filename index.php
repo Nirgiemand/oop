@@ -19,3 +19,4 @@ $testTabel->set('teine','2');
 echo '<pre>';
 print_r($testTabel);
 echo '<pre />';
+$testTabel->parse();

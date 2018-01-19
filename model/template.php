@@ -66,7 +66,8 @@ class template
         function parse () {
             $str = $this->content; // malli sisu algväärtus
             foreach ($this->vars as $name=>$value) {
-                str
-            }
-        }
+                $str = str_replace('{'.$name.'}',$value,$str);
+
+            return $str;
+        }}
 }};
