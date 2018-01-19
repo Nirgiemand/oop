@@ -14,6 +14,32 @@ class template
     var $vars = array (); // HTML malli elementide nimetuste ja reaalväärtuste paarid
 
     // HTML failist sisu lugemine
+
+    // HTML malli faili nime ja õiguste kontrollimine ning sisu lugemine, kui vajalikud tingimused on täidetud
+    function loadFile () {
+        if (!is_dir(VIEW_DIR)) {
+            echo 'Ei ole leitud '. VIEW_DIR. 'nimega kataloogi <br />';
+            exit;
+        }
+        // kui faili nimi on määratud kujul /views/failinimi.html
+        $file = VIEW_DIR.$this->file.'.html'; // abiasendus
+        if(file_exists($fail) and is_file($file) and is_readable($this)) {
+            $this->readFile($file);
+        }
+
+    // kui fail asub alamkataloogis views/alamkaust/failinimi.html
+        $file = VIEW_DIR.str_replace('.', '/',$this->file).'html'; // abiasendus
+        if(file_exists($fail) and is_file($file) and is_readable($this)) {
+        $this->readFile($file);
+
+        }
+        // kui ikkagi faili sisu on puudulik
+        if($this->content === false) {
+            echo 'Ei suutnud lugeda '.$this.' sisu <br />';
+            exit;
+        }
+
+
     function readFile($file) {
         /*
          $fp = fopen($file, 'r');
@@ -21,4 +47,5 @@ class template
         fclose($fp); */
         $this->content = file_get_contents($file)
     }
+}
 }
