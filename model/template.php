@@ -11,7 +11,18 @@ class template
     // klassi muutujad
     var $file = ''; // HTML malli faili nimi
     var $content = false; // HTML malli sisu, mis alguses puudub, HTML failist loetud sisu
-    var $vars = array (); // HTML malli elementide nimetuste ja reaalväärtuste paarid
+    var $vars = array ();
+
+    /**
+     * template constructor.
+     * @param string $file
+     */
+    public function __construct($file)
+    {
+        $this->file = $file; // määrame kasutatava malli nime
+        $this->loadFile(); // laadime määratud nimega faili sisu
+    }
+    // HTML malli elementide nimetuste ja reaalväärtuste paarid
 
     // HTML failist sisu lugemine
 
