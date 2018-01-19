@@ -46,7 +46,7 @@ class template
         }
         // kui ikkagi faili sisu on puudulik
         if($this->content === false) {
-            echo 'Ei suutnud lugeda '.$this.' sisu <br />';
+            echo 'Ei suutnud lugeda '.$this->$file.'sisu  <br />';
             exit;
         }
 
@@ -56,6 +56,10 @@ class template
          $fp = fopen($file, 'r');
         $this->content = fread($fp,filesize($file));
         fclose($fp); */
-        $this->content = file_get_contents($file)
+        $this->content = file_get_contents($file);
     }
-};
+    // malli elemendi nime ja reaalväärtuse paari koostamine ja lisamine $this->vars masiivi sisse.
+        function set($name, $value) {
+            $this->vars [$name] =$value;
+        }
+}};
