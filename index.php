@@ -7,3 +7,6 @@
  */
 // loeme sisse projekti konfiguratsiooni
 require_once 'conf.php';
+
+// loome test objekti template klassist
+$testTabel = new template('test.html')

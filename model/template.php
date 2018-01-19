@@ -58,5 +58,4 @@ class template
         fclose($fp); */
         $this->content = file_get_contents($file)
     }
-}
-}
+};
