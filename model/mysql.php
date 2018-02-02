@@ -28,14 +28,26 @@ class mysql
         $this->user = $user;
         $this->pass = $pass;
         $this->dbname = $dbname;
-        $this->connect();
+        $this->connect(); // ühenduse loomine
     }
     function connect() {
-        $this->conn=mysqli_connect($this->host, $this->user, $this->pass,$this->dbname);
+        $this->conn = mysqli_connect($this->host, $this->user, $this->pass, $this->dbname);
         if($this->conn == false) {
             echo 'Probleem andmebaasi ühendamisega <br />';
+            echo mysqli_connect_error();
             exit;
         }
+    }
+
+    // funktsioon päringu edastamiseks
+    function query($sql){
+        $result = mysqli_query($this->conn, $sql);
+        if($result == false) {
+            echo 'Probleem päringuga <br />';
+            echo '<b>'.$sql.'<br />';
+            return false;
+        }
+        return $result;
     }
 
 
