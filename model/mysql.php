@@ -49,6 +49,17 @@ class mysql
         }
         return $result;
     }
-
+        // funktsioon, mis annab ka päringuga andmed
+    function getData($sql) {
+        $result = $this->query($sql);
+        $data = array ();
+        while ($row = mysqli_fetch_assoc($result)){
+            $data[] = $row;
+        }
+        if(count($data)== 0) {
+            return false;
+        }
+        return $data;
+    }
 
 }
