@@ -26,4 +26,4 @@ require_once ('db_conf.php');
 // loome objektid, mis oleks vaja pidevalt kasutada
 $http = new linkobject(); // HTTP lingi objekt
 // andmebaasi objekt
-$db = new mysql('DB_HOST','DB_USER','DB_PASS', 'DB_NAME');
+$db = new mysql(DB_HOST,DB_USER,DB_PASS, DB_DBNAME);
