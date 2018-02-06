@@ -23,6 +23,7 @@ if($result != false){
         $menuItem->set('menu_item_name', $page['title']);
         $link = $http->getLink(array('page_id'=>$page['content_id']));
         $menuItem->set('link', $link);
+        $http->set('page_id', $page['content_id']);
         $menu->add('menu_items', $menuItem->parse());
 
     }
