@@ -44,9 +44,6 @@ class linkobject extends http
             if($value != false){
                 $this->addToLink($link, $name, $value);
         }}
-            // kõigepealt koostame paaride komplektid
-            $this->addToLink($link, $name, $value);
-        }
         // siin paarid name=value&name1=value1 on olemas
         // http://anna.ikt.khk.ee/oop_vs17_1/index.php?name=value&name1=value1
         if($link != ''){
