@@ -9,6 +9,20 @@
 $menuTmpl = new template('menu.menu');
 // loome menüü elemendi malli objekti
 $menuItemTmpl = new template('menu.menu_item');
+
+// koostame päringu menüü ja sisu ülesehitamiseks
+$sql ='SELECT content_id, content, title '.
+    'FROM content WHERE parent_id ='.fixDb(0).
+    ' AND show_in_menu='.fixDb(1);
+// kontrollime päringu kirjeldust
+// echo $sql;
+$result = $db->getData($sql);
+echo '<pre>';
+print_r($result);
+echo '</pre>';
+
+
+
 // ###############################################
 //AVALEHT
 $menuItemTmpl->set('menu_item_name', 'Avaleht');

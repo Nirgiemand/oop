@@ -10,5 +10,5 @@ function fixUrl($str){
 }
 
 function fixDb($value){
-    return '"'.addslashes($value).'""';
+    return '"'.addslashes($value).'"';
 }
