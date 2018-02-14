@@ -23,10 +23,14 @@ echo '<pre>';
 print_r ($result);
 echo '</pre>';
 // kontrollime, kas andmed on olemas
-if($result != false) {
-    // kasutajale tuleb avada töösession
-    echo 'Oled sisse logitud WOOHOO JEEE!! <br />';
+if($result != false){
+    // kasutajale tuleb avada töösessioon
+   // session_start();
+    // $_SESSION['username'] = $username;
+    $sess->sessionCreate($result[0]);
+    echo 'Oled sisselogitud jeee WOOHOO!! <br />';
 } else {
-    // tuleb kasutaja tagasi suunata sisselogimisvormile
-    echo 'Mine proovi uuesti sisse logida <br />';
+    // tuleb kasutaja suunata tagasi sisselogimisele
+    $link = $http->getLink(array('control' => 'login'));
+    $http->redirect($link);
 }
