@@ -22,3 +22,11 @@ $result = $db->getData($sql);
 echo '<pre>';
 print_r ($result);
 echo '</pre>';
+// kontrollime, kas andmed on olemas
+if($result != false) {
+    // kasutajale tuleb avada töösession
+    echo 'Oled sisse logitud WOOHOO JEEE!! <br />';
+} else {
+    // tuleb kasutaja tagasi suunata sisselogimisvormile
+    echo 'Mine proovi uuesti sisse logida <br />';
+}
