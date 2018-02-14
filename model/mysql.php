@@ -8,7 +8,7 @@
 
 class mysql
 {
-    // klassi väljad
+// klassi väljad
     var $conn = false; // ühendus db serveriga
     var $host = false; // db serveri nimi/ip
     var $user = false; // db kasutajanimi
@@ -59,6 +59,7 @@ class mysql
         }
         return $data;
     }
+
 
 
 }
