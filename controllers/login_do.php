@@ -14,7 +14,11 @@ echo $username.'<br />';
 echo $password.'<br />';
 
 // koostame päring kasutaja kontrollimiseks
-$sql = 'SELECT * FROM USER '.
+$sql = 'SELECT * FROM user '.
     'WHERE username='.fixDb($username).
     ' AND password='.fixDb(md5($password));
-echo $sql.'<br />';
+
+$result = $db->getData($sql);
+echo '<pre>';
+print_r ($result);
+echo '</pre>';
