@@ -48,12 +48,12 @@ class http
         $this->vars[$name] = $value;
     }
     // funktsioon, mis suunab vastavale lehele
-    function redirect($url = false) {
-        if($url != false) {
+    function redirect($url = false){
+        if($url == false){
             $url = $this->getLink();
         }
         $url = str_replace('&amp;', '&', $url);
-        header('Location'.$url);
+        header('Location: '.$url);
         exit;
     }
 }
