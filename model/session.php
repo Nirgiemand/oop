@@ -24,8 +24,9 @@ class session
     {
         $this->http = &$http;
         $this->db = &$db;
+        $this->sid = $http->get('sid');
      //   $this->sessionCreate();
-        $this->clearSession();
+     //   $this->clearSession();
     } // anonüümne sessioon lubatud
 
     // loome sessiooni
