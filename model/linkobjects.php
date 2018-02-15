@@ -12,7 +12,7 @@ class linkobject extends http
     var $protocol = 'http://';
     var $eq = '=';
     var $delim = '&amp;';
-    var $aie = array ('lang_id'); // lingi kohustslik osa
+    var $aie = array('sid');
     /**
      * linkobject constructor.
      */
@@ -36,11 +36,14 @@ class linkobject extends http
             // kõigepealt koostame paaride komplektid
             $this->addToLink($link, $name, $value);
         }
-        foreach ($aie as $name => $value) {
+        foreach ($aie as $name) {
+            $value = $this->get($name);
             if($value != false){
                 $this->addToLink($link, $name, $value);
         }}
-        foreach ($aie as $name => $value) {
+        foreach ($this->aie as $name) {
+            $value = $this->get($name);
+
             if($value != false){
                 $this->addToLink($link, $name, $value);
         }}

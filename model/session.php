@@ -25,6 +25,7 @@ class session
         $this->http = &$http;
         $this->db = &$db;
         $this->sid = $http->get('sid');
+        $this->checkSession();
      //   $this->sessionCreate();
      //   $this->clearSession();
     } // anonüümne sessioon lubatud
@@ -37,7 +38,7 @@ class session
             $user = array(
                 'user_id' => 0,
                 'role_id' => 0,
-                'username' => 'Anonüümne'
+                'username' => 'Anonyymne'
             );
             // loome sid
             $sid = md5(uniqid(time().mt_rand(1,1000), true));
@@ -64,4 +65,49 @@ class session
         $this->db->query($sql);
     }
 
+    // sessioni andmete kontroll
+    function checkSession() {
+        $this->clearSession();
+        // kui sid puudub ja on lubatud anonüümne kasutaja
+        if($this->sid === false and $this->anonymous) {
+            $this->sessionCreate();
+        }
+        // kui sid on olemas
+        if($this->sid !== false) {
+            $sql = 'SELECT * FROM session WHERE '.
+                'sid='.fixDb($this->sid);
+            $result = $this->db->getData($sql);
+            // kui andmed ei tulnud
+            if($result == false) {
+                // siis vaatame, kui anonüümne kasutaja on lubatud
+                if($this->anonymous){
+                    // loome anonüümne sessioon
+                    $this->sessionCreate();
+                    define('USER_ID', 0);
+                    define('ROLE_ID', 0);
+                } else {
+                    // kui anonüümne ei ole lubatud
+                    $this->sid = false;
+                    // nüüd tuleb kustutada sid ka $http objektist
+                    // .. veel ei ole lahendatud
+                }
+            } else {
+                // saime andmed andmebaasist, valmistame andmetest sessiooni andmed
+                $vars = unserialize($result[0]['svars']);
+                // kui andmed ei ole massiivi kujul, siis teisendan need massiiviks
+                if(!is_array($vars)){
+                    $vars = array ();
+                }
+                $this->vars = $vars;
+                // kasutaja andmete töötlus
+                $user_data = unserialize($result[0]['user_data']);
+                define('USER_ID', $user_data['user_id']);
+                define('ROLE_ID', $user_data['role_id']);
+                $this->user_data = $user_data;
+            }
+        } else {
+            define('USER_ID', 0);
+            define('ROLE_ID', 0);
+        }
+    }
 }

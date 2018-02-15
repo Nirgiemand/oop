@@ -33,7 +33,7 @@ if($result != false){
 // katsetamiseks lisan uue konstandi, mis määrab kasutaja id - sellest lähtun, kas kasutajale on võimalik antud
 // menüü element näidata või mitte
 
-define('USER_ID', 0); // mitte sisselogitud kasutaja
+// define('USER_ID', 0); // mitte sisselogitud kasutaja
 
 //näitame sisselogimine neile, kes ei ole sisse logitud
 if(USER_ID == ROLE_NONE) {
