@@ -24,7 +24,8 @@ class session
     {
         $this->http = &$http;
         $this->db = &$db;
-        $this->sessionCreate();
+     //   $this->sessionCreate();
+        $this->clearSession();
     } // anonüümne sessioon lubatud
 
     // loome sessiooni
@@ -54,5 +55,12 @@ class session
         }
     }
 
+    // funktsioon, mis hakkab kustutama andmebaasist
+    function clearSession() {
+        $sql = 'DELETE FROM session WHERE '.
+            time().' - UNIX_TIMESTAMP(changed) > '.
+            $this->timeout;
+        $this->db->query($sql);
+    }
 
 }
